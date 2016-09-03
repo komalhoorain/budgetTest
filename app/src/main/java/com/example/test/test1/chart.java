@@ -17,7 +17,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 public class chart extends AppCompatActivity  {
 
@@ -60,24 +60,21 @@ public class chart extends AppCompatActivity  {
             }
         });
 
-        mChart.setCenterText("Test Graph");
+        mChart.setCenterText("Attendence");
 
         ArrayList<PieEntry> yVals1 = new ArrayList<PieEntry>();
 
-        yVals1.add(new PieEntry((float) 21.6, yVals1.size() - 1));
-        yVals1.add(new PieEntry((float) 2.0, yVals1.size() - 1));
-        yVals1.add(new PieEntry((float) 2.0, yVals1.size() - 1));
+        yVals1.add(new PieEntry((float) 21.6, "Present"));
+        yVals1.add(new PieEntry((float) 2.0, "Absent"));
+        yVals1.add(new PieEntry((float) 2.0, "Leave"));
 
-        ArrayList<String> xVals = new ArrayList<String>();
 
-        xVals.add("Ruben");
-        xVals.add("Claudio");
 
         ArrayList<Integer> colorlist = new ArrayList<Integer>();
 
         colorlist.add(Color.rgb(84,124,101));
-        colorlist.add( Color.rgb(64,64,64));
-        colorlist.add( Color.rgb(153,19,0));
+        colorlist.add(Color.rgb(64, 64, 64));
+        colorlist.add(Color.rgb(153, 19, 0));
 
 
         PieDataSet dataSet = new PieDataSet(yVals1, "Idades Porlande");
@@ -85,9 +82,13 @@ public class chart extends AppCompatActivity  {
         dataSet.setColors(colorlist);
 
 
-        PieData data = new PieData( dataSet);
+        PieData data;
+        data = new PieData(dataSet);
         data.setValueTextSize(11.0f);
         data.setValueTextColor(Color.BLACK);
+
+        //show x-axis values
+        mChart.setDrawSliceText(true);
 
         //convert float into decimal
         //data.setValueFormatter(new MyValueFormatter());
@@ -103,11 +104,19 @@ public class chart extends AppCompatActivity  {
         mChart.animateXY(1400, 1400);
 
 
-        // Legends to show on bottom of the graph
+
+        mChart.setData(data);
         Legend l = mChart.getLegend();
-        l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
-        l.setXEntrySpace(7);
-        l.setYEntrySpace(5);
+        l.setFormSize(10.0f); // set the size of the legend forms/shapes
+        l.setForm(Legend.LegendForm.CIRCLE); // set what type of form/shape should be used
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setTextSize(12.0f);
+        l.setTextColor(Color.BLACK);
+        l.setXEntrySpace(5.0f); // set the space between the legend entries on the x-axis
+        l.setYEntrySpace(5.0f); // set the space between the legend entries on the y-axis
+
+        l.setWordWrapEnabled(true);
+
     }
     public class MyValueFormatter implements ValueFormatter {
 
