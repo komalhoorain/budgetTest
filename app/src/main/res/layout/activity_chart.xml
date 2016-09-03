@@ -14,11 +14,12 @@
         android:background="#00FF00"
         android:id="@+id/header"
         android:gravity="center"/>
-    <lecho.lib.hellocharts.view.PieChartView
-        android:id="@+id/chart"
-        android:layout_below="@id/header"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:id="@+id/chart"
+            android:layout_height="match_parent">
+        </com.github.mikephil.charting.charts.PieChart>
 
 </RelativeLayout>
